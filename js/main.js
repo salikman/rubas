@@ -1,15 +1,17 @@
-"use strict";
 (function($) {
     $('.navbar__search-btn').on('click load', function () {
         $('.navbar__search').toggleClass('navbar__search--open');
-    })
+    });
     ///////////////////////////
 	// On Scroll
     $(window).on('scroll load resize', function () {
-        let wScroll = $(this).scrollTop();
+        var wScroll = $(this).scrollTop();
 
-        wScroll > 1 ? $('#nav').addClass('fixed') : $('#nav').removeClass('fixed');
-        this.innerWidth <= 768 ? $('#nav').addClass('fixed') : $('#nav').removeClass('fixed');
+        if (window.innerWidth >= 769) {
+            wScroll > 1 ? $('#nav').addClass('fixed') : $('#nav').removeClass('fixed');
+        } else {
+            window.innerWidth <= 768 ? $('#nav').addClass('fixed') : $('#nav').removeClass('fixed');
+        }
     });
     ///////////////////////////
     // sliders
@@ -35,25 +37,25 @@
 
     ///////////////////////////
     // Mmen basket
-    Mmenu.configs.offCanvas.page.selector = "#page";
+    // Mmenu.configs.offCanvas.page.selector = "#page";
 
-    document.addEventListener(
-        "DOMContentLoaded", () => {
-            new Mmenu( "#basket-shop", {
-                "offCanvas": true,
-                "extensions": ["position-right"],
-                "navbar": {
-                    'title' : 'Корзина'
-                }
-            });
-            new Mmenu( "#navbar-categories", {
-                "offCanvas": true,
-                "extensions": ["position-left"],
-                "navbar": {
-                    'title' : 'Категории товаров'
-                }
-            });
-        }
-    );
+    document.addEventListener("DOMContentLoaded", () => {
+        new Mmenu( "#basket-shop", {
+            "offCanvas": true,
+            "extensions": ["position-right"],
+            "navbar": {
+                'title' : 'Корзина'
+            }
+        })
+    });
+    document.addEventListener("DOMContentLoaded", () => {
+        new Mmenu( "#navbar-categories", {
+            "offCanvas": true,
+            "extensions": ["position-left"],
+            "navbar": {
+                'title' : 'Категории товаров'
+            }
+        });
+    });
 
 })(jQuery);
